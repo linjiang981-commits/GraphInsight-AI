@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.services.llm_service import LLMService
+from fastapi.responses import StreamingResponse
 
 
 app = FastAPI(
@@ -39,9 +40,26 @@ def health():
 def chat(request: ChatRequest):
 
     answer = llm_service.chat(
-        request.question
+        messages=request.messages,
+        temperature=request.temperature
     )
 
     return ChatResponse(
         answer=answer
+    )
+
+@app.post("/api/chat/stream")
+async def chat_stream(
+    request: ChatRequest
+):
+
+    return StreamingResponse(
+        llm_service.stream_chat(
+            messages=request.messages,
+            temperature=request.temperature
+        ),
+        media_type="text/plain; charset=utf-8",
+        headers={
+            "Cache-Control": "no-cache"
+        }
     )

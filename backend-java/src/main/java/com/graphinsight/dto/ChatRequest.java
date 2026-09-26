@@ -1,6 +1,9 @@
 package com.graphinsight.dto;
 
+import java.util.List;
+
 public record ChatRequest(
-        String question
+        List<ChatMessage> messages,
+        double temperature
 ) {
 }
