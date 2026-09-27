@@ -4,6 +4,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.services.llm_service import LLMService
 from fastapi.responses import StreamingResponse
+from app.schemas.retrieval import (
+    RetrievalRequest,
+    RetrievalResponse
+)
+
+from app.services.retrieval_service import (
+    RetrievalService
+)
 
 
 app = FastAPI(
@@ -22,6 +30,8 @@ app.add_middleware(
 
 
 llm_service = LLMService()
+
+retrieval_service = RetrievalService()
 
 
 @app.get("/health")
@@ -62,4 +72,21 @@ async def chat_stream(
         headers={
             "Cache-Control": "no-cache"
         }
+    )
+
+@app.post(
+    "/api/retrieval/search",
+    response_model=RetrievalResponse
+)
+def retrieval_search(
+    request: RetrievalRequest
+):
+
+    results = retrieval_service.search(
+        query=request.query,
+        top_k=request.top_k
+    )
+
+    return RetrievalResponse(
+        results=results
     )
