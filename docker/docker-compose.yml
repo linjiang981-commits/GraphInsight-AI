@@ -1,0 +1,23 @@
+services:
+
+  postgres:
+    image: pgvector/pgvector:pg16
+
+    container_name: graphinsight-postgres
+
+    environment:
+      POSTGRES_USER: graphinsight
+      POSTGRES_PASSWORD: graphinsight123
+      POSTGRES_DB: graphinsight
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - graphinsight_pgdata:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+
+volumes:
+  graphinsight_pgdata:
