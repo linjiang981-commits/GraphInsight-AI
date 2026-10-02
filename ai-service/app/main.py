@@ -13,6 +13,15 @@ from app.services.retrieval_service import (
     RetrievalService
 )
 
+from app.schemas.rag import (
+    RagRequest,
+    RagResponse
+)
+
+from app.services.rag_service import (
+    RagService
+)
+
 
 app = FastAPI(
     title="GraphInsight AI Service",
@@ -30,6 +39,8 @@ app.add_middleware(
 
 
 llm_service = LLMService()
+
+rag_service = RagService()
 
 retrieval_service = RetrievalService()
 
@@ -89,4 +100,22 @@ def retrieval_search(
 
     return RetrievalResponse(
         results=results
+    )
+
+@app.post(
+    "/api/rag/query",
+    response_model=RagResponse
+)
+def rag_query(
+    request: RagRequest
+):
+
+    result = rag_service.answer(
+        question=request.question,
+        top_k=request.top_k,
+        temperature=request.temperature
+    )
+
+    return RagResponse(
+        **result
     )

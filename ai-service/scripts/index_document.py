@@ -19,7 +19,7 @@ file_path = (
     .parents[1]
     / "data"
     / "sample_docs"
-    / "network_guide.md"
+    / "internal_network_policy.md"
 )
 
 
