@@ -1,0 +1,121 @@
+[
+  {
+    "id": "private_01",
+    "category": "private_fact",
+    "question": "GraphInsight内部故障编号GI-NET-017是什么意思？",
+    "expected_keywords": [
+      "DNS",
+      "缓存污染"
+    ],
+    "expected_source": "internal_network_policy.md",
+    "answerable": true
+  },
+  {
+    "id": "private_02",
+    "category": "private_fact",
+    "question": "GI-NET-023对应什么故障排查流程？",
+    "expected_keywords": [
+      "API网关",
+      "上游",
+      "连接超时"
+    ],
+    "expected_source": "internal_network_policy.md",
+    "answerable": true
+  },
+  {
+    "id": "private_03",
+    "category": "private_fact",
+    "question": "GraphInsight测试环境健康检查连续失败多少次触发告警？",
+    "expected_keywords": [
+      "3"
+    ],
+    "expected_source": "internal_network_policy.md",
+    "answerable": true
+  },
+  {
+    "id": "private_04",
+    "category": "private_fact",
+    "question": "测试环境API网关的上游请求超时阈值是多少？",
+    "expected_keywords": [
+      "8秒"
+    ],
+    "expected_source": "internal_network_policy.md",
+    "answerable": true
+  },
+
+  {
+    "id": "semantic_01",
+    "category": "semantic_paraphrase",
+    "question": "为什么服务器上会堆积很多CLOSE_WAIT连接？",
+    "expected_keywords": [
+      "Socket",
+      "关闭"
+    ],
+    "expected_source": "tcp_troubleshooting.txt",
+    "answerable": true
+  },
+  {
+    "id": "semantic_02",
+    "category": "semantic_paraphrase",
+    "question": "域名突然无法正常访问服务，可能和哪个基础网络服务有关？",
+    "expected_keywords": [
+      "DNS"
+    ],
+    "expected_source": "network_guide.md",
+    "answerable": true
+  },
+  {
+    "id": "semantic_03",
+    "category": "semantic_paraphrase",
+    "question": "网关从后端服务得不到正常响应通常对应哪个HTTP错误？",
+    "expected_keywords": [
+      "502"
+    ],
+    "expected_source": "network_guide.md",
+    "answerable": true
+  },
+  {
+    "id": "semantic_04",
+    "category": "semantic_paraphrase",
+    "question": "高并发短连接环境下主动关闭连接的一方为什么可能面临端口压力？",
+    "expected_keywords": [
+      "TIME_WAIT",
+      "临时端口"
+    ],
+    "expected_source": "tcp_troubleshooting.txt",
+    "answerable": true
+  },
+
+  {
+    "id": "unknown_01",
+    "category": "unanswerable",
+    "question": "GraphInsight公司的CEO叫什么？",
+    "expected_keywords": [],
+    "expected_source": null,
+    "answerable": false
+  },
+  {
+    "id": "unknown_02",
+    "category": "unanswerable",
+    "question": "GraphInsight公司的总部地址在哪里？",
+    "expected_keywords": [],
+    "expected_source": null,
+    "answerable": false
+  },
+  {
+    "id": "unknown_03",
+    "category": "unanswerable",
+    "question": "GraphInsight内部员工总人数是多少？",
+    "expected_keywords": [],
+    "expected_source": null,
+    "answerable": false
+  },
+  {
+    "id": "unknown_04",
+    "category": "unanswerable",
+    "question": "GraphInsight生产环境数据库密码是什么？",
+    "expected_keywords": [],
+    "expected_source": null,
+    "answerable": false
+  }
+]

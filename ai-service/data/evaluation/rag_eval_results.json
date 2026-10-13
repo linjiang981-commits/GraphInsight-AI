@@ -1,0 +1,406 @@
+{
+  "metrics": {
+    "answer_accuracy": 0.8333333333333334,
+    "retrieval_hit_at_3": 1.0,
+    "refusal_accuracy": 1.0,
+    "average_latency": 2.11475
+  },
+  "results": [
+    {
+      "id": "private_01",
+      "category": "private_fact",
+      "question": "GraphInsight内部故障编号GI-NET-017是什么意思？",
+      "answer": "GI-NET-017 表示 DNS 缓存污染排查流程。[S2]",
+      "answer_correct": true,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 1.933,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 0,
+          "score": 0.6909931302070618,
+          "content": "# GraphInsight 内部网络规范"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 1,
+          "score": 0.6196821105290728,
+          "content": "## 故障编号\n\nGI-NET-017 表示 DNS 缓存污染排查流程。\n\nGI-NET-023 表示 API 网关上游连接超时排查流程。"
+        },
+        {
+          "rank": 3,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.5485312015693673,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        }
+      ]
+    },
+    {
+      "id": "private_02",
+      "category": "private_fact",
+      "question": "GI-NET-023对应什么故障排查流程？",
+      "answer": "GI-NET-023 对应 API 网关上游连接超时排查流程。[S1]",
+      "answer_correct": false,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 1.7,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 1,
+          "score": 0.7627509776876837,
+          "content": "## 故障编号\n\nGI-NET-017 表示 DNS 缓存污染排查流程。\n\nGI-NET-023 表示 API 网关上游连接超时排查流程。"
+        },
+        {
+          "rank": 2,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.5494227900585068,
+          "content": "# 网络故障排查指南"
+        },
+        {
+          "rank": 3,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.4839673782577383,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        }
+      ]
+    },
+    {
+      "id": "private_03",
+      "category": "private_fact",
+      "question": "GraphInsight测试环境健康检查连续失败多少次触发告警？",
+      "answer": "GraphInsight 测试环境中，服务连续 **3 次**健康检查失败后触发告警。[S1]",
+      "answer_correct": true,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 2.368,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.8581699388673979,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 0,
+          "score": 0.3883777011970626,
+          "content": "# GraphInsight 内部网络规范"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.3191775368908838,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    },
+    {
+      "id": "private_04",
+      "category": "private_fact",
+      "question": "测试环境API网关的上游请求超时阈值是多少？",
+      "answer": "测试环境 API 网关的上游请求超时阈值为 **8 秒**。[S1]",
+      "answer_correct": false,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 1.957,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 3,
+          "score": 0.8010561107330247,
+          "content": "## API 网关\n\n测试环境 API 网关上游请求超时阈值为 8 秒。"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.43806496631712,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        },
+        {
+          "rank": 3,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 1,
+          "score": 0.3995225667668926,
+          "content": "## 故障编号\n\nGI-NET-017 表示 DNS 缓存污染排查流程。\n\nGI-NET-023 表示 API 网关上游连接超时排查流程。"
+        }
+      ]
+    },
+    {
+      "id": "semantic_01",
+      "category": "semantic_paraphrase",
+      "question": "为什么服务器上会堆积很多CLOSE_WAIT连接？",
+      "answer": "服务器上堆积大量 CLOSE_WAIT 连接，通常是因为**远端已经关闭连接，但本地应用程序没有正确关闭对应的 Socket**。如果应用长期不调用 `close` 方法，CLOSE_WAIT 连接就可能持续累积 [S1]。\n\n此外，大量 CLOSE_WAIT 还会进一步消耗文件描述符；当文件描述符耗尽后，服务器可能无法接受新的网络连接 [S1]。",
+      "answer_correct": true,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 3.311,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "tcp_troubleshooting.txt",
+          "chunk_index": 1,
+          "score": 0.7290508095278693,
+          "content": "大量CLOSE_WAIT通常意味着远端已经关闭连接，但本地应用程序没有正确关闭Socket。如果应用长期不调用close方法，CLOSE_WAIT连接可能持续累积。\n\n大量CLOSE_WAIT还可能进一步消耗文件描述符。当文件描述符耗尽后，服务器可能无法接受新的网络连接。\n\nTIME_WAIT通常出现在主动关闭连接的一方。在高并发短连接环境中，大量TIME_WAIT可能造成临时端口资源压力。"
+        },
+        {
+          "rank": 2,
+          "document_name": "network_guide.md",
+          "chunk_index": 5,
+          "score": 0.5700255548923586,
+          "content": "### 502\n\nHTTP 502 Bad Gateway通常表示网关或代理没有从上游服务得到正常响应。"
+        },
+        {
+          "rank": 3,
+          "document_name": "tcp_troubleshooting.txt",
+          "chunk_index": 0,
+          "score": 0.4966526335502931,
+          "content": "TCP连接故障排查\n\nTCP是一种面向连接的可靠传输协议。\n\n当客户端无法建立TCP连接时，可以首先检查服务器是否正常监听目标端口。如果服务没有启动或者监听地址配置错误，客户端将无法完成连接。\n\n防火墙规则也可能导致TCP连接失败。服务器本机防火墙、云平台安全组以及网络ACL都可能阻止指定端口的访问。"
+        }
+      ]
+    },
+    {
+      "id": "semantic_02",
+      "category": "semantic_paraphrase",
+      "question": "域名突然无法正常访问服务，可能和哪个基础网络服务有关？",
+      "answer": "可能和 **DNS 服务**有关。DNS 负责把域名解析成 IP 地址；如果 DNS 解析失败，用户可能无法通过域名访问服务器 [S2]。常见检查方式包括 `nslookup` 和 `dig` [S2]。",
+      "answer_correct": true,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 2.772,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "network_guide.md",
+          "chunk_index": 5,
+          "score": 0.6253139003924202,
+          "content": "### 502\n\nHTTP 502 Bad Gateway通常表示网关或代理没有从上游服务得到正常响应。"
+        },
+        {
+          "rank": 2,
+          "document_name": "network_guide.md",
+          "chunk_index": 1,
+          "score": 0.6095139384269758,
+          "content": "## DNS故障\n\nDNS负责把域名解析成IP地址。\n\n如果DNS解析失败，用户可能无法通过域名访问服务器。\n\n常见检查方式包括nslookup和dig。"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.44078627581678254,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    },
+    {
+      "id": "semantic_03",
+      "category": "semantic_paraphrase",
+      "question": "网关从后端服务得不到正常响应通常对应哪个HTTP错误？",
+      "answer": "网关从后端服务得不到正常响应通常对应 **HTTP 502 Bad Gateway**。[S1]",
+      "answer_correct": true,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 1.882,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "network_guide.md",
+          "chunk_index": 5,
+          "score": 0.6852340902457863,
+          "content": "### 502\n\nHTTP 502 Bad Gateway通常表示网关或代理没有从上游服务得到正常响应。"
+        },
+        {
+          "rank": 2,
+          "document_name": "network_guide.md",
+          "chunk_index": 4,
+          "score": 0.5573913025078568,
+          "content": "### 500\n\nHTTP 500通常说明服务端程序发生内部异常。"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.5291611113894319,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    },
+    {
+      "id": "semantic_04",
+      "category": "semantic_paraphrase",
+      "question": "高并发短连接环境下主动关闭连接的一方为什么可能面临端口压力？",
+      "answer": "主动关闭连接的一方通常会进入 TIME_WAIT 状态；在高并发短连接环境中，大量 TIME_WAIT 可能造成临时端口资源压力。[S1]",
+      "answer_correct": true,
+      "retrieval_hit": true,
+      "refusal_correct": false,
+      "latency_seconds": 1.788,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "tcp_troubleshooting.txt",
+          "chunk_index": 1,
+          "score": 0.6359253119208015,
+          "content": "大量CLOSE_WAIT通常意味着远端已经关闭连接，但本地应用程序没有正确关闭Socket。如果应用长期不调用close方法，CLOSE_WAIT连接可能持续累积。\n\n大量CLOSE_WAIT还可能进一步消耗文件描述符。当文件描述符耗尽后，服务器可能无法接受新的网络连接。\n\nTIME_WAIT通常出现在主动关闭连接的一方。在高并发短连接环境中，大量TIME_WAIT可能造成临时端口资源压力。"
+        },
+        {
+          "rank": 2,
+          "document_name": "network_guide.md",
+          "chunk_index": 5,
+          "score": 0.5595446825027466,
+          "content": "### 502\n\nHTTP 502 Bad Gateway通常表示网关或代理没有从上游服务得到正常响应。"
+        },
+        {
+          "rank": 3,
+          "document_name": "tcp_troubleshooting.txt",
+          "chunk_index": 0,
+          "score": 0.5152681758839989,
+          "content": "TCP连接故障排查\n\nTCP是一种面向连接的可靠传输协议。\n\n当客户端无法建立TCP连接时，可以首先检查服务器是否正常监听目标端口。如果服务没有启动或者监听地址配置错误，客户端将无法完成连接。\n\n防火墙规则也可能导致TCP连接失败。服务器本机防火墙、云平台安全组以及网络ACL都可能阻止指定端口的访问。"
+        }
+      ]
+    },
+    {
+      "id": "unknown_01",
+      "category": "unanswerable",
+      "question": "GraphInsight公司的CEO叫什么？",
+      "answer": "根据当前知识库无法确定。\n\n检索证据仅包含 GraphInsight 内部网络规范与网络故障排查指南 [S1][S2][S3]，其中未提及公司 CEO 的相关信息。",
+      "answer_correct": true,
+      "retrieval_hit": false,
+      "refusal_correct": true,
+      "latency_seconds": 1.85,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 0,
+          "score": 0.4854445457458496,
+          "content": "# GraphInsight 内部网络规范"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.2853213378595514,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.2436961829662323,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    },
+    {
+      "id": "unknown_02",
+      "category": "unanswerable",
+      "question": "GraphInsight公司的总部地址在哪里？",
+      "answer": "根据当前知识库无法确定。\n\n现有检索证据仅包含 GraphInsight 内部网络规范（健康检查告警规则）[S1][S2]和网络故障排查指南的标题信息 [S3]，均未涉及公司总部地址。",
+      "answer_correct": true,
+      "retrieval_hit": false,
+      "refusal_correct": true,
+      "latency_seconds": 1.885,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 0,
+          "score": 0.5713124786000703,
+          "content": "# GraphInsight 内部网络规范"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.3660737981222253,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.3469669831067621,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    },
+    {
+      "id": "unknown_03",
+      "category": "unanswerable",
+      "question": "GraphInsight内部员工总人数是多少？",
+      "answer": "根据当前知识库无法确定。\n\n现有检索证据仅包含内部网络规范（含健康检查告警规则）[S1][S2]和网络故障排查指南标题[S3]，均未提及 GraphInsight 内部员工总人数。",
+      "answer_correct": true,
+      "retrieval_hit": false,
+      "refusal_correct": true,
+      "latency_seconds": 1.768,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 0,
+          "score": 0.5873472690582275,
+          "content": "# GraphInsight 内部网络规范"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.4409832691560235,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.21927876770496368,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    },
+    {
+      "id": "unknown_04",
+      "category": "unanswerable",
+      "question": "GraphInsight生产环境数据库密码是什么？",
+      "answer": "根据当前知识库无法确定。\n\n现有检索证据仅涉及 GraphInsight 内部网络规范 [S1]、测试环境的健康检查告警规则（连续 3 次失败触发告警）[S2] 以及网络故障排查指南标题 [S3]，均未包含生产环境数据库密码相关信息。此外，生产环境数据库密码属于敏感凭据，如需获取请通过正式的安全渠道申请。",
+      "answer_correct": true,
+      "retrieval_hit": false,
+      "refusal_correct": true,
+      "latency_seconds": 2.163,
+      "sources": [
+        {
+          "rank": 1,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 0,
+          "score": 0.7040828466415405,
+          "content": "# GraphInsight 内部网络规范"
+        },
+        {
+          "rank": 2,
+          "document_name": "internal_network_policy.md",
+          "chunk_index": 2,
+          "score": 0.5272553248849327,
+          "content": "## 健康检查\n\nGraphInsight 测试环境规定：\n\n服务连续 3 次健康检查失败后触发告警。"
+        },
+        {
+          "rank": 3,
+          "document_name": "network_guide.md",
+          "chunk_index": 0,
+          "score": 0.45212143659591675,
+          "content": "# 网络故障排查指南"
+        }
+      ]
+    }
+  ]
+}

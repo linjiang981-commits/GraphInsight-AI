@@ -24,3 +24,34 @@ assistant based on RAG, GraphRAG and AI Agent.
 - [ ] RAG
 - [ ] GraphRAG
 - [ ] Agent
+
+
+## Current Features
+
+- FastAPI AI service
+- Spring Boot backend
+- LLM chat
+- Multi-turn context
+- Streaming
+- Document parsing
+- Chunking
+- Multilingual embeddings
+- PostgreSQL + pgvector
+- Vector retrieval
+- Naive RAG
+- Source citation
+- Evaluation pipeline
+
+## RAG Pipeline
+
+Document
+→ Parse
+→ Chunk
+→ Embed
+→ pgvector
+
+Question
+→ Retrieve
+→ Context
+→ LLM
+→ Answer + Sources
