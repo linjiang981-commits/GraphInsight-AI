@@ -1,104 +1,54 @@
-import json
-from pathlib import Path
+import re
+import unicodedata
 
 from rank_bm25 import BM25Okapi
 
 
+def tokenize(text: str) -> list[str]:
+    normalized = unicodedata.normalize("NFKC", text).casefold()
+    return re.findall(
+        r"[a-z0-9]+(?:[-_][a-z0-9]+)*|[\u4e00-\u9fff]",
+        normalized,
+    )
+
 
 class BM25Service:
-
-
     def __init__(self):
+        self.documents = []
+        self.token_sets = []
+        self.bm25 = None
 
-        data_path = (
-            Path(__file__)
-            .resolve()
-            .parents[2]
-            / "data"
-            / "network_documents.json"
-        )
+    def build_index(self, documents: list[dict]):
+        ids = [item["id"] for item in documents]
+        if len(ids) != len(set(ids)):
+            raise ValueError("Duplicate IDs in BM25 input")
 
+        self.documents = [dict(item) for item in documents]
+        corpus = [tokenize(item["content"]) for item in self.documents]
+        self.token_sets = [set(tokens) for tokens in corpus]
+        self.bm25 = BM25Okapi(corpus) if corpus and any(corpus) else None
 
-        with open(
-            data_path,
-            "r",
-            encoding="utf-8"
-        ) as f:
+    def search(self, query: str, top_k: int = 3) -> list[dict]:
+        if top_k < 1:
+            raise ValueError("top_k must be positive")
 
-            self.documents = json.load(f)
+        tokens = tokenize(query)
+        if self.bm25 is None or not tokens:
+            return []
 
-
-
-        texts = [
-            doc["content"]
-            for doc in self.documents
+        scores = self.bm25.get_scores(tokens)
+        query_terms = set(tokens)
+        # 只要求存在词项交集，不把 score <= 0 当作普遍无关标准。
+        indices = [
+            index for index, terms in enumerate(self.token_sets)
+            if query_terms & terms
         ]
-
-
-        tokenized_docs = [
-            list(text)
-            for text in texts
+        indices.sort(
+            key=lambda index: (
+                -float(scores[index]), self.documents[index]["id"]
+            )
+        )
+        return [
+            {**self.documents[index], "score": float(scores[index])}
+            for index in indices[:top_k]
         ]
-
-
-        self.bm25 = BM25Okapi(
-            tokenized_docs
-        )
-
-
-
-    def search(
-        self,
-        query,
-        top_k=3
-    ):
-
-
-        tokens = list(query)
-
-
-        scores = (
-            self.bm25
-            .get_scores(tokens)
-        )
-
-
-        ranked = sorted(
-            enumerate(scores),
-            key=lambda x:x[1],
-            reverse=True
-        )
-
-
-
-        results=[]
-
-
-        for index,score in ranked[:top_k]:
-
-            document = (
-                self.documents[index]
-            )
-
-
-            results.append(
-                {
-                    "id":
-                        document["id"],
-
-                    "content":
-                        document["content"],
-
-                    "score":
-                        float(score),
-
-                    "metadata":
-                        {
-                            "source":
-                                "bm25"
-                        }
-                }
-            )
-
-
-        return results

@@ -1,5 +1,17 @@
 # Day8 Hybrid Retrieval Experiment
 
+> Historical experiment: the 50% scores below came from the original evaluator,
+> which marked correct abstentions as wrong and failed on whitespace/Markdown.
+> The old hybrid implementation also mixed JSON document IDs with database chunk
+> IDs. These numbers must not be used to conclude that the methods performed equally.
+>
+> Re-scoring the saved answers with the shared rules gives Vector 12/12 and
+> Hybrid 10/12. This is **offline rescoring of old answers**, not evidence of
+> improved retrieval or a new generation run. See
+> `ai-service/data/evaluation/vector_vs_hybrid_rescored.json` and
+> [the repair guide](day8-repair-guide.md). A fresh comparison now uses the same
+> database corpus, RRF and one RagService prompt.
+
 
 ## Experiment Goal
 

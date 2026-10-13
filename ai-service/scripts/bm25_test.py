@@ -1,31 +1,26 @@
-from app.services.bm25_service import BM25Service
+from app.services.bm25_service import BM25Service, tokenize
 
 
-docs = [
+def main():
+    documents = [
+        {"id": 1, "content": "GI-NET-017 表示 DNS 缓存污染排查流程。"},
+        {"id": 2, "content": "GI-NET-023 表示 API 网关上游连接超时排查流程。"},
+        {"id": 3, "content": "CLOSE_WAIT 通常与本地应用没有关闭 Socket 有关。"},
+    ]
+    service = BM25Service()
+    service.build_index(documents)
 
-"HTTP 502 Bad Gateway通常表示网关或代理从上游服务器获得了无效响应。",
+    print("Tokens:", tokenize("GI-NET-023 CLOSE_WAIT"))
+    results = service.search("GI-NET-023", top_k=3)
+    for result in results:
+        print(result)
 
-"HTTP 500表示服务器内部发生错误，需要检查服务端程序日志。",
-
-"HTTP 404表示服务器没有找到请求对应的资源。"
-
-]
-
-
-bm25 = BM25Service()
-
-
-bm25.build_index(
-    docs
-)
-
-
-results = bm25.search(
-    "HTTP502是什么",
-    3
-)
+    assert results and results[0]["id"] == 2
+    assert service.search("zzzz_unseen_token") == []
+    service.build_index([])
+    assert service.search("DNS") == []
+    print("BM25 CHECKS PASSED")
 
 
-for r in results:
-
-    print(r)
+if __name__ == "__main__":
+    main()

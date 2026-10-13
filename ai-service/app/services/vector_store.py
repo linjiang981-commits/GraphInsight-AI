@@ -7,6 +7,29 @@ from app.core.database import (
 
 class VectorStore:
 
+    def list_chunks(self) -> list[dict]:
+        """Return the same chunk identities and metadata used by vector search."""
+        with get_connection() as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    """
+                    SELECT id, document_id, chunk_index, content, metadata
+                    FROM document_chunks
+                    ORDER BY id;
+                    """
+                )
+                rows = cursor.fetchall()
+        return [
+            {
+                "id": row[0],
+                "document_id": row[1],
+                "chunk_index": row[2],
+                "content": row[3],
+                "metadata": row[4] or {},
+            }
+            for row in rows
+        ]
+
 
     def create_document(
         self,
@@ -113,6 +136,9 @@ class VectorStore:
         top_k: int = 3
     ):
 
+        if top_k < 1:
+            raise ValueError("top_k must be positive")
+
         with get_connection() as connection:
 
             with connection.cursor() as cursor:
@@ -133,7 +159,7 @@ class VectorStore:
                     FROM document_chunks dc
 
                     ORDER BY
-                        dc.embedding <=> %s
+                        dc.embedding <=> %s, dc.id
 
                     LIMIT %s;
                     """,

@@ -11,14 +11,14 @@ from app.services.llm_service import (
 
 class RagService:
 
-    def __init__(self):
+    def __init__(self, retriever=None, llm_service=None):
 
         self.retriever = (
-            DatabaseRetrievalService()
+            retriever if retriever is not None else DatabaseRetrievalService()
         )
 
         self.llm_service = (
-            LLMService()
+            llm_service if llm_service is not None else LLMService()
         )
 
 
@@ -74,6 +74,7 @@ Chunk: {chunk_index}
 
             sources.append(
                 {
+                    "id": result["id"],
                     "rank": rank,
                     "document_name":
                         document_name,
@@ -102,10 +103,22 @@ Chunk: {chunk_index}
         self,
         question: str,
         top_k: int = 3,
-        temperature: float = 0.2
+        temperature: float = 0.2,
+        retrieval_mode: str = "vector",
     ):
 
-        results = self.retriever.search(
+        if not question.strip():
+            raise ValueError("question cannot be blank")
+        if top_k < 1:
+            raise ValueError("top_k must be positive")
+        if retrieval_mode not in {"vector", "hybrid"}:
+            raise ValueError(f"Unsupported retrieval_mode: {retrieval_mode}")
+
+        search = (
+            self.retriever.search if retrieval_mode == "vector"
+            else self.retriever.hybrid_search
+        )
+        results = search(
             query=question,
             top_k=top_k
         )
