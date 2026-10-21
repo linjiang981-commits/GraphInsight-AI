@@ -1,18 +1,7 @@
-from typing import Literal
-
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 
 
 class RagRequest(BaseModel):
-
-    retrieval_mode: Literal["vector", "hybrid"] = "vector"
-
-    @field_validator("question")
-    @classmethod
-    def reject_blank_question(cls, value: str) -> str:
-        if not value.strip():
-            raise ValueError("question cannot be blank")
-        return value
 
     question: str = Field(
         min_length=1
@@ -32,8 +21,6 @@ class RagRequest(BaseModel):
 
 
 class RagSource(BaseModel):
-
-    id: int
 
     rank: int
 

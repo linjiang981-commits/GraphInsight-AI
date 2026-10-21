@@ -40,11 +40,9 @@ app.add_middleware(
 
 llm_service = LLMService()
 
-rag_service = RagService(llm_service=llm_service)
+rag_service = RagService()
 
-retrieval_service = RetrievalService(
-    embedding_service=rag_service.retriever.embedding_service
-)
+retrieval_service = RetrievalService()
 
 
 @app.get("/health")
@@ -115,8 +113,7 @@ def rag_query(
     result = rag_service.answer(
         question=request.question,
         top_k=request.top_k,
-        temperature=request.temperature,
-        retrieval_mode=request.retrieval_mode,
+        temperature=request.temperature
     )
 
     return RagResponse(
