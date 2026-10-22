@@ -55,3 +55,36 @@ Question
 → Context
 → LLM
 → Answer + Sources
+
+## Day 8 Authentication
+
+- [x] PostgreSQL app_users persistence
+- [x] BCrypt password hashing
+- [x] JWT login and expiration
+- [x] Bearer token validation
+- [x] Protected AI endpoint
+- [x] Current-user endpoint
+- [x] Authentication integration tests
+
+### API
+POST /api/auth/login
+GET /api/auth/me
+POST /api/ai/chat
+
+/api/auth/me requires a valid Bearer token.
+/api/ai/chat also requires the ai:chat scope.
+
+### Local setup
+Start PostgreSQL and FastAPI.
+Create backend-java/.env locally with the database credentials,
+APP_JWT_SECRET, APP_DEMO_USERNAME, APP_DEMO_PASSWORD,
+and APP_JWT_TTL_SECONDS. Never commit .env or tokens.
+
+From backend-java:
+.\start-dev.ps1
+
+Tests:
+.\mvnw.cmd test
+
+This is a local learning implementation. FastAPI is an internal service.
+Registration, refresh, revocation and production hardening are future work.
