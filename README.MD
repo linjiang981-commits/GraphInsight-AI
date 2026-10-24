@@ -88,3 +88,29 @@ Tests:
 
 This is a local learning implementation. FastAPI is an internal service.
 Registration, refresh, revocation and production hardening are future work.
+
+## Day 9 Knowledge Base Management
+
+- Knowledge base CRUD with JWT-derived ownership.
+- Per-user list/detail/update/delete authorization.
+- Bounded pagination and ACTIVE/ARCHIVED status.
+- Foreign-key relationships for document and conversation metadata.
+- Empty knowledge bases can be deleted; non-empty deletion returns 409.
+- Integration tests cover CRUD, isolation, validation and deletion constraints.
+
+### APIs
+- POST /api/knowledge-bases
+- GET /api/knowledge-bases?page=0&size=10
+- GET /api/knowledge-bases/{id}
+- PUT /api/knowledge-bases/{id}
+- DELETE /api/knowledge-bases/{id}
+
+### Scope
+Document upload, processing workers and message persistence are future work.
+The existing Python RAG index is not yet scoped by knowledge base or user.
+
+### Verification
+Run from backend-java:
+.\mvnw.cmd test
+
+Complete the real PostgreSQL checks described in docs/day9-notes.md.
